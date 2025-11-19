@@ -1,0 +1,3511 @@
+{
+	"info": {
+		"_postman_id": "154b18db-ffb1-419d-b6ac-f31ac8e70733",
+		"name": "Automação API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14888416"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Relizar login com sucesso",
+					"item": [
+						{
+							"name": "Relizar login com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 200 e a mensagem de sucesso\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Login realizado com sucesso\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"{{usuarioPadrao}}\",\n  \"password\": \"{{senhaPadrao}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								},
+								"description": "A duração do token retornado em authorization é de 600 segundos (10 minutos). Caso esteja expirado irá receber status code 401 (Unauthorized).\n"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Realizar login com e-mail inválido",
+					"item": [
+						{
+							"name": "Realizar login com e-mail inválido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 400 e a mensagem de email inválido\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.email).to.eql(\"email deve ser um email válido\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"fulanoqa.com\",\n  \"password\": \"{{senhaPadrao}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								},
+								"description": "A duração do token retornado em authorization é de 600 segundos (10 minutos). Caso esteja expirado irá receber status code 401 (Unauthorized).\n"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Realizar login com e-mail em branco",
+					"item": [
+						{
+							"name": "Realizar login com e-mail em branco",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 400 e a mensagem de email em branco\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.email).to.eql(\"email não pode ficar em branco\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"\",\n  \"password\": \"{{senhaPadrao}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								},
+								"description": "A duração do token retornado em authorization é de 600 segundos (10 minutos). Caso esteja expirado irá receber status code 401 (Unauthorized).\n"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Realizar login com senha em branco",
+					"item": [
+						{
+							"name": "Realizar login com senha em branco",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 400 e a mensagem de senha em branco\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.password).to.eql(\"password não pode ficar em branco\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"{{usuarioPadrao}}\",\n  \"password\": \"\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								},
+								"description": "A duração do token retornado em authorization é de 600 segundos (10 minutos). Caso esteja expirado irá receber status code 401 (Unauthorized).\n"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Usuários",
+			"item": [
+				{
+					"name": "Cadastrar administrador usuário com sucesso",
+					"item": [
+						{
+							"name": "Cadastrar administrador usuário com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 201, mensagem e salva o ID\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"userId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"{{$randomFullName}}\",\n    \"email\": \"{{$randomEmail}}\",\n    \"password\": \"{{$randomPassword}}\",\n    \"administrador\": \"true\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/usuarios",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios"
+									]
+								},
+								"description": "Não é permitido cadastrar usuário com email já utilizado"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cadastrar usuário com email ja cadastradado",
+					"item": [
+						{
+							"name": "Cadastrar administrador usuário com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 201, mensagem e salva o ID\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"userId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"{{$randomFullName}}\",\n    \"email\": \"{{$randomEmail}}\",\n    \"password\": \"{{$randomPassword}}\",\n    \"administrador\": \"true\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/usuarios",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios"
+									]
+								},
+								"description": "Não é permitido cadastrar usuário com email já utilizado"
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar usuário cadastrado",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 200 e salva o email\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.collectionVariables.set(\"userEmail\", json.email);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/usuarios/{{userId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar usuário com email ja cadastradado",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 400 e a mensagem de email ja cadastrado\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Este email já está sendo usado\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"{{$randomFullName}}\",\n    \"email\": \"{{userEmail}}\",\n    \"password\": \"{{$randomPassword}}\",\n    \"administrador\": \"true\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/usuarios",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios"
+									]
+								},
+								"description": "Não é permitido cadastrar usuário com email já utilizado"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Buscar usuário por id inexistente",
+					"item": [
+						{
+							"name": "Buscar usuário inexistente",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 400 e mensagem de usuário não encontrado\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Usuário não encontrado\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/usuarios/OtwbUuPAyLmA0hcQ",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios",
+										"OtwbUuPAyLmA0hcQ"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Deletar usuário com produto no carrinho",
+					"item": [
+						{
+							"name": "Cadastrar administrador usuário com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 201, mensagem e salva o ID\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"userId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"{{$randomFullName}}\",\n    \"email\": \"{{$randomEmail}}\",\n    \"password\": \"{{$randomPassword}}\",\n    \"administrador\": \"true\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/usuarios",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios"
+									]
+								},
+								"description": "Não é permitido cadastrar usuário com email já utilizado"
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar usuário cadastrado",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 200 e salva o email e senha\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.collectionVariables.set(\"userEmail\", json.email);\r",
+											"    pm.collectionVariables.set(\"userPassword\", json.password);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/usuarios/{{userId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Relizar login com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 200 e a mensagem de sucesso\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Login realizado com sucesso\");\r",
+											"\r",
+											"    const token = json.authorization.replace(\"Bearer \", \"\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"token\", token);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"{{userEmail}}\",\n  \"password\": \"{{userPassword}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								},
+								"description": "A duração do token retornado em authorization é de 600 segundos (10 minutos). Caso esteja expirado irá receber status code 401 (Unauthorized).\n"
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar produto com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 201 e a mensagem de sucesso\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"produtoId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nome\": \"{{$randomProductName}}\",\n  \"preco\": 1000,\n  \"descricao\": \"{{$randomWord}}\",\n  \"quantidade\": 100\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/produtos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos"
+									]
+								},
+								"description": "Não é permitido cadastrar produto com nome já utilizado"
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar carrinho com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 201, mensagem e salva o ID\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"carrinhoId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"produtos\": [\n        {\n            \"idProduto\": \"{{produtoId}}\",\n            \"quantidade\": 10\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/carrinhos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"carrinhos"
+									]
+								},
+								"description": "Não é permitido cadastrar usuário com email já utilizado"
+							},
+							"response": []
+						},
+						{
+							"name": "Listar carrinhos cadastrados",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 200, o preço total e salva o ID do usuário\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.collectionVariables.set(\"userId\", json.idUsuario);\r",
+											"\r",
+											"    pm.expect(json.precoTotal).to.eql(10000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/carrinhos/{{carrinhoId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"carrinhos",
+										"{{carrinhoId}}"
+									]
+								},
+								"description": "Os carrinhos retornados são únicos por usuário"
+							},
+							"response": []
+						},
+						{
+							"name": "Deletar usuário com carrinho cadastrado",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 400 e a mensagem.\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Não é permitido excluir usuário com carrinho cadastrado\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/usuarios/{{userId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios",
+										"{{userId}}"
+									]
+								},
+								"description": "Não é permitido excluir usuário com carrinho."
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Produtos",
+			"item": [
+				{
+					"name": "Cadastrar produto com sucesso",
+					"item": [
+						{
+							"name": "Cadastrar administrador usuário com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 201, mensagem e salva o ID\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"userId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"{{$randomFullName}}\",\n    \"email\": \"{{$randomEmail}}\",\n    \"password\": \"{{$randomPassword}}\",\n    \"administrador\": \"true\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/usuarios",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios"
+									]
+								},
+								"description": "Não é permitido cadastrar usuário com email já utilizado"
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar usuário cadastrado",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 200 e salva o email e senha\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.collectionVariables.set(\"userEmail\", json.email);\r",
+											"    pm.collectionVariables.set(\"userPassword\", json.password);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/usuarios/{{userId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Relizar login com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 200 e a mensagem de sucesso\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Login realizado com sucesso\");\r",
+											"\r",
+											"    const token = json.authorization.replace(\"Bearer \", \"\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"token\", token);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"{{userEmail}}\",\n  \"password\": \"{{userPassword}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								},
+								"description": "A duração do token retornado em authorization é de 600 segundos (10 minutos). Caso esteja expirado irá receber status code 401 (Unauthorized).\n"
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar produto com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 201 e a mensagem de sucesso\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"produtoId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nome\": \"{{$randomProductName}}\",\n  \"preco\": 1500,\n  \"descricao\": \"{{$randomWord}}\",\n  \"quantidade\": 200\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/produtos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos"
+									]
+								},
+								"description": "Não é permitido cadastrar produto com nome já utilizado"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cadastrar produto com token inválido",
+					"item": [
+						{
+							"name": "Cadastrar administrador usuário com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 201, mensagem e salva o ID\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"userId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"{{$randomFullName}}\",\n    \"email\": \"{{$randomEmail}}\",\n    \"password\": \"{{$randomPassword}}\",\n    \"administrador\": \"true\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/usuarios",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios"
+									]
+								},
+								"description": "Não é permitido cadastrar usuário com email já utilizado"
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar usuário cadastrado",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 200 e salva o email e senha\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.collectionVariables.set(\"userEmail\", json.email);\r",
+											"    pm.collectionVariables.set(\"userPassword\", json.password);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/usuarios/{{userId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Relizar login com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 200 e a mensagem de sucesso\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Login realizado com sucesso\");\r",
+											"\r",
+											"    const token = json.authorization.replace(\"Bearer \", \"\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"token\", token);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"{{userEmail}}\",\n  \"password\": \"{{userPassword}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								},
+								"description": "A duração do token retornado em authorization é de 600 segundos (10 minutos). Caso esteja expirado irá receber status code 401 (Unauthorized).\n"
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar produto com token inválido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 401 e a mensagem de token inválido e salva o ID\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Token de acesso ausente, inválido, expirado ou usuário do token não existe mais\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"produtoId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenInvalido}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nome\": \"{{$randomProductName}}\",\n  \"preco\": 1500,\n  \"descricao\": \"{{$randomWord}}\",\n  \"quantidade\": 200\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/produtos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos"
+									]
+								},
+								"description": "Não é permitido cadastrar produto com nome já utilizado"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Editar produto com nome ja existente",
+					"item": [
+						{
+							"name": "Cadastrar administrador usuário com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 201, mensagem e salva o ID\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"userId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"{{$randomFullName}}\",\n    \"email\": \"{{$randomEmail}}\",\n    \"password\": \"{{$randomPassword}}\",\n    \"administrador\": \"true\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/usuarios",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios"
+									]
+								},
+								"description": "Não é permitido cadastrar usuário com email já utilizado"
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar usuário cadastrado",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 200 e salva o email e senha\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.collectionVariables.set(\"userEmail\", json.email);\r",
+											"    pm.collectionVariables.set(\"userPassword\", json.password);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/usuarios/{{userId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Relizar login com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 200 e a mensagem de sucesso\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Login realizado com sucesso\");\r",
+											"\r",
+											"    const token = json.authorization.replace(\"Bearer \", \"\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"token\", token);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"{{userEmail}}\",\n  \"password\": \"{{userPassword}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								},
+								"description": "A duração do token retornado em authorization é de 600 segundos (10 minutos). Caso esteja expirado irá receber status code 401 (Unauthorized).\n"
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar produto com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 201, a mensagem de sucesso e salva o ID\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"produtoId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nome\": \"{{$randomProductName}}\",\n  \"preco\": 1500,\n  \"descricao\": \"{{$randomWord}}\",\n  \"quantidade\": 200\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/produtos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos"
+									]
+								},
+								"description": "Não é permitido cadastrar produto com nome já utilizado"
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar produto com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 400 e a mensagem que o produto ja existe\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Já existe produto com esse nome\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"produtoId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nome\": \"Logitech MX Vertical\",\n  \"preco\": 1500,\n  \"descricao\": \"{{$randomWord}}\",\n  \"quantidade\": 200\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/produtos/{{produtoId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos",
+										"{{produtoId}}"
+									]
+								},
+								"description": "Não é permitido cadastrar produto com nome já utilizado"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Excluir produto que faça parte de algum carrinho",
+					"item": [
+						{
+							"name": "Cadastrar administrador usuário com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 201, mensagem e salva o ID\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"userId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"{{$randomFullName}}\",\n    \"email\": \"{{$randomEmail}}\",\n    \"password\": \"{{$randomPassword}}\",\n    \"administrador\": \"true\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/usuarios",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios"
+									]
+								},
+								"description": "Não é permitido cadastrar usuário com email já utilizado"
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar usuário cadastrado",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 200 e salva o email e senha\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.collectionVariables.set(\"userEmail\", json.email);\r",
+											"    pm.collectionVariables.set(\"userPassword\", json.password);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/usuarios/{{userId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Relizar login com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 200 e a mensagem de sucesso\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Login realizado com sucesso\");\r",
+											"\r",
+											"    const token = json.authorization.replace(\"Bearer \", \"\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"token\", token);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"{{userEmail}}\",\n  \"password\": \"{{userPassword}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								},
+								"description": "A duração do token retornado em authorization é de 600 segundos (10 minutos). Caso esteja expirado irá receber status code 401 (Unauthorized).\n"
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar produto com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 201 e a mensagem de sucesso\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"produtoId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nome\": \"{{$randomProductName}}\",\n  \"preco\": 1500,\n  \"descricao\": \"{{$randomWord}}\",\n  \"quantidade\": 200\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/produtos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos"
+									]
+								},
+								"description": "Não é permitido cadastrar produto com nome já utilizado"
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar carrinho com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 201, mensagem e salva o ID\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"carrinhoId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"produtos\": [\n        {\n            \"idProduto\": \"{{produtoId}}\",\n            \"quantidade\": 1\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/carrinhos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"carrinhos"
+									]
+								},
+								"description": "Não é permitido cadastrar usuário com email já utilizado"
+							},
+							"response": []
+						},
+						{
+							"name": "Excluir produto que faça parte de algum carrinho",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 400 e a mensagem\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Não é permitido excluir produto que faz parte de carrinho\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"produtoId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nome\": \"{{$randomProductName}}\",\n  \"preco\": 1500,\n  \"descricao\": \"{{$randomWord}}\",\n  \"quantidade\": 200\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/produtos/{{produtoId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos",
+										"{{produtoId}}"
+									]
+								},
+								"description": "Não é permitido cadastrar produto com nome já utilizado"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Carrinhos",
+			"item": [
+				{
+					"name": "Cadastrar carrinho com sucesso",
+					"item": [
+						{
+							"name": "Cadastrar administrador usuário com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 201, mensagem e salva o ID\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"userId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"{{$randomFullName}}\",\n    \"email\": \"{{$randomEmail}}\",\n    \"password\": \"{{$randomPassword}}\",\n    \"administrador\": \"true\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/usuarios",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios"
+									]
+								},
+								"description": "Não é permitido cadastrar usuário com email já utilizado"
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar usuário cadastrado",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 200 e salva o email e senha\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.collectionVariables.set(\"userEmail\", json.email);\r",
+											"    pm.collectionVariables.set(\"userPassword\", json.password);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/usuarios/{{userId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Relizar login com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 200 e a mensagem de sucesso\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Login realizado com sucesso\");\r",
+											"\r",
+											"    const token = json.authorization.replace(\"Bearer \", \"\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"token\", token);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"{{userEmail}}\",\n  \"password\": \"{{userPassword}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								},
+								"description": "A duração do token retornado em authorization é de 600 segundos (10 minutos). Caso esteja expirado irá receber status code 401 (Unauthorized).\n"
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar produto com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 201 e a mensagem de sucesso\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"produtoId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nome\": \"{{$randomProductName}}\",\n  \"preco\": 470,\n  \"descricao\": \"{{$randomWord}}\",\n  \"quantidade\": 381\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/produtos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos"
+									]
+								},
+								"description": "Não é permitido cadastrar produto com nome já utilizado"
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar carrinho com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 201, mensagem e salva o ID\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"carrinhoId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"produtos\": [\n        {\n            \"idProduto\": \"{{produtoId}}\",\n            \"quantidade\": 1\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/carrinhos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"carrinhos"
+									]
+								},
+								"description": "Não é permitido cadastrar usuário com email já utilizado"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Concluir compra com sucesso",
+					"item": [
+						{
+							"name": "Cadastrar administrador usuário com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 201, mensagem e salva o ID\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"userId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"{{$randomFullName}}\",\n    \"email\": \"{{$randomEmail}}\",\n    \"password\": \"{{$randomPassword}}\",\n    \"administrador\": \"true\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/usuarios",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios"
+									]
+								},
+								"description": "Não é permitido cadastrar usuário com email já utilizado"
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar usuário cadastrado",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 200 e salva o email e senha\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.collectionVariables.set(\"userEmail\", json.email);\r",
+											"    pm.collectionVariables.set(\"userPassword\", json.password);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/usuarios/{{userId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Relizar login com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 200 e a mensagem de sucesso\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Login realizado com sucesso\");\r",
+											"\r",
+											"    const token = json.authorization.replace(\"Bearer \", \"\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"token\", token);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"{{userEmail}}\",\n  \"password\": \"{{userPassword}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								},
+								"description": "A duração do token retornado em authorization é de 600 segundos (10 minutos). Caso esteja expirado irá receber status code 401 (Unauthorized).\n"
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar produto com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 201 e a mensagem de sucesso\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"produtoId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nome\": \"{{$randomProductName}}\",\n  \"preco\": 2500,\n  \"descricao\": \"{{$randomWord}}\",\n  \"quantidade\": 1000\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/produtos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos"
+									]
+								},
+								"description": "Não é permitido cadastrar produto com nome já utilizado"
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar carrinho com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 201, mensagem e salva o ID\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"carrinhoId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"produtos\": [\n        {\n            \"idProduto\": \"{{produtoId}}\",\n            \"quantidade\": 1\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/carrinhos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"carrinhos"
+									]
+								},
+								"description": "Não é permitido cadastrar usuário com email já utilizado"
+							},
+							"response": []
+						},
+						{
+							"name": "Concluir compra com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 200 e a mensagem\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Registro excluído com sucesso\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/carrinhos/concluir-compra",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"carrinhos",
+										"concluir-compra"
+									]
+								},
+								"description": "Não é permitido cadastrar usuário com email já utilizado"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Concluir compra com token inválido",
+					"item": [
+						{
+							"name": "Cadastrar administrador usuário com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 201, mensagem e salva o ID\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"userId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"{{$randomFullName}}\",\n    \"email\": \"{{$randomEmail}}\",\n    \"password\": \"{{$randomPassword}}\",\n    \"administrador\": \"true\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/usuarios",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios"
+									]
+								},
+								"description": "Não é permitido cadastrar usuário com email já utilizado"
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar usuário cadastrado",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 200 e salva o email e senha\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.collectionVariables.set(\"userEmail\", json.email);\r",
+											"    pm.collectionVariables.set(\"userPassword\", json.password);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/usuarios/{{userId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Relizar login com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 200 e a mensagem de sucesso\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Login realizado com sucesso\");\r",
+											"\r",
+											"    const token = json.authorization.replace(\"Bearer \", \"\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"token\", token);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"{{userEmail}}\",\n  \"password\": \"{{userPassword}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								},
+								"description": "A duração do token retornado em authorization é de 600 segundos (10 minutos). Caso esteja expirado irá receber status code 401 (Unauthorized).\n"
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar produto com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 201 e a mensagem de sucesso\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"produtoId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nome\": \"{{$randomProductName}}\",\n  \"preco\": 2500,\n  \"descricao\": \"{{$randomWord}}\",\n  \"quantidade\": 1000\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/produtos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos"
+									]
+								},
+								"description": "Não é permitido cadastrar produto com nome já utilizado"
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar carrinho com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 201, mensagem e salva o ID\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"carrinhoId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"produtos\": [\n        {\n            \"idProduto\": \"{{produtoId}}\",\n            \"quantidade\": 1\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/carrinhos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"carrinhos"
+									]
+								},
+								"description": "Não é permitido cadastrar usuário com email já utilizado"
+							},
+							"response": []
+						},
+						{
+							"name": "Concluir compra com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 401 e a mensagem\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Token de acesso ausente, inválido, expirado ou usuário do token não existe mais\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenInvalido}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/carrinhos/concluir-compra",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"carrinhos",
+										"concluir-compra"
+									]
+								},
+								"description": "Não é permitido cadastrar usuário com email já utilizado"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cancelar compra com token inválido",
+					"item": [
+						{
+							"name": "Cadastrar administrador usuário com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 201, mensagem de sucesso e salva o ID\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"userId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"{{$randomFullName}}\",\n    \"email\": \"{{$randomEmail}}\",\n    \"password\": \"{{$randomPassword}}\",\n    \"administrador\": \"true\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/usuarios",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios"
+									]
+								},
+								"description": "Não é permitido cadastrar usuário com email já utilizado"
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar usuário cadastrado",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 200 e salva o email e senha\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.collectionVariables.set(\"userEmail\", json.email);\r",
+											"    pm.collectionVariables.set(\"userPassword\", json.password);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/usuarios/{{userId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Relizar login com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 200 e a mensagem de sucesso\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Login realizado com sucesso\");\r",
+											"\r",
+											"    const token = json.authorization.replace(\"Bearer \", \"\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"token\", token);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"{{userEmail}}\",\n  \"password\": \"{{userPassword}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								},
+								"description": "A duração do token retornado em authorization é de 600 segundos (10 minutos). Caso esteja expirado irá receber status code 401 (Unauthorized).\n"
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar produto com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 201 e a mensagem de sucesso\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"produtoId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nome\": \"{{$randomProductName}}\",\n  \"preco\": 2500,\n  \"descricao\": \"{{$randomWord}}\",\n  \"quantidade\": 1000\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/produtos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos"
+									]
+								},
+								"description": "Não é permitido cadastrar produto com nome já utilizado"
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar carrinho com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 201, mensagem e salva o ID\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"\r",
+											"    pm.collectionVariables.set(\"carrinhoId\", json._id);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"produtos\": [\n        {\n            \"idProduto\": \"{{produtoId}}\",\n            \"quantidade\": 1\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/carrinhos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"carrinhos"
+									]
+								},
+								"description": "Não é permitido cadastrar usuário com email já utilizado"
+							},
+							"response": []
+						},
+						{
+							"name": "Concluir compra com sucesso",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Valida o status 401 e a mensagem\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"\r",
+											"    const json = pm.response.json();\r",
+											"\r",
+											"    pm.expect(json.message).to.eql(\"Token de acesso ausente, inválido, expirado ou usuário do token não existe mais\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenInvalido}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/carrinhos/cancelar-compra",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"carrinhos",
+										"cancelar-compra"
+									]
+								},
+								"description": "Não é permitido cadastrar usuário com email já utilizado"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "userId",
+			"value": ""
+		},
+		{
+			"key": "userEmail",
+			"value": ""
+		},
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "userPassword",
+			"value": ""
+		},
+		{
+			"key": "produtoId",
+			"value": ""
+		},
+		{
+			"key": "carrinhoId",
+			"value": ""
+		}
+	]
+}
