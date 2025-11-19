@@ -9,7 +9,7 @@ Este repositório contém a solução do desafio de QA, com foco em **testes de 
 ## Estrutura do Projeto
 
 - `Automacao_API.postman_collection.json` → Coleção com todos os endpoints e testes automatizados.  
-- `desafio-api-QA.postman_environment.json` → Ambiente com variáveis utilizadas na coleção.  
+- `variaveisDaAutomacaoDaAPI.postman_environment` → Ambiente com variáveis utilizadas na coleção.  
 - `README.md` → Manual de uso e documentação do projeto.
 
 ## Funcionalidades Testadas
@@ -46,15 +46,15 @@ git clone https://github.com/sandrofunk/desafio-api-QA.git
 
 2. Abra o Postman e importe os arquivos:
 
-- Coleção: Automacao_API.postman_collection.json
+- Coleção: Automacao_API.postman_collection.json 
 
 - Ambiente: desafio-api-QA.postman_environment.json
 
 3. Configure o ambiente ativo no Postman 
 
-4. Selecione a Collection 
+4. Selecione a Collection e o arquivo de variáveis que irá ser utilizada para executar a collection
 
-5. Clique com o botão direito e selecione e clique em Run
+5. Clique com o botão direito e clique em Run
 
 6. Para executar os testes clique em Run Automação API
 
